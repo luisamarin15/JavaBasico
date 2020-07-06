@@ -74,30 +74,27 @@ public class Aparcamiento {
 			if (vehi.getMatricula().equals(matricula))
 				return vehi;
 		}
-		return null;
+		return null ;
 	}
 
+	
 	public  void entra(String matricula) throws VehiculoYaAparcado {
 		Vehiculo vehi = buscaAparcado(matricula);
 		if (vehi != null) {
-			// error: ya existe un coche dentro del aparcamiento
-			// con esa matricula
+			//vehiculo ya existe
 			throw new VehiculoYaAparcado();
 		}
-		// vemos si es un vehículo de residente
+		// Busqueda vehículo residente
 		vehi = buscaResidente(matricula);
 		if (vehi == null) {
-			// no es un vehículo de residente, vemos si es oficial
+			// Busqueda vehículo oficial
 			vehi = buscaOficial(matricula);
 			if (vehi == null) {
-				// tampoco es oficial, luego es de no residente.
-				// Crea un vehículo de no residente
+				//creación residente
 				vehi = new VehiculoNoResidente(matricula);
 			}
 		}
-		// sea del tipo que sea, llamamos al método correspondiente
-		// a comenzar la estancia y le añadimos a la lista de
-		// vehículos aparcados
+		//añadir vehículo aparcado
 		vehi.comienzaEstancia();
 		aparcados.add(vehi);
 	}
@@ -105,21 +102,22 @@ public class Aparcamiento {
 	public Vehiculo sale(String matricula) throws VehiculoNoAparcado {
 		Vehiculo vehi = buscaAparcado(matricula);
 		if (vehi == null) {
-			// error: el vehículo debería estar en el aparcamiento!!
+			//validación si el vehículo está aparcado
 			throw new VehiculoNoAparcado();
 		}
-		// finaliza la estancia y se elimina de la lista de aparcados
+		// eliminación del vehículo
 		vehi.finEstancia();
 		aparcados.remove(vehi);
 		return vehi;
 	}
 
+	//Comienza el mes para los vehículos los vehículos de residentesy oficiales.
 	public void comienzaMes() {
 		for (VehiculoResidente vehi : residentes)
 			vehi.comienzaMes();
-		for (VehiculoOficial vehi : oficiales)
-			vehi.comienzaMes();
-	}
+		}
+	
+	
 
 	public void generaInformePagosResidentes(String nomFich) throws IOException {
 		PrintWriter sal = null;
