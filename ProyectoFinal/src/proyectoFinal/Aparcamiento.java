@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-import proyectoFinal.Aparcamento.VehiculoNoAparcado;
+
 
 public class Aparcamiento {
 	static Scanner teclado = new Scanner(System.in);
@@ -137,7 +137,9 @@ public class Aparcamiento {
 	}
 
 	public static void menuPrincipal() {
+		boolean salir = false;
 		Aparcamiento apar = new Aparcamiento();
+		while (!salir) {
 		System.out.println("Bienvenido al menu principal");
 		System.out.println("Seleccione la opcion: ");
 		System.out.println("1. Registrar entrada: ");
@@ -146,6 +148,7 @@ public class Aparcamiento {
 		System.out.println("4. Da de alta vehículo de residente: ");
 		System.out.println("5. Comienza mes: ");
 		System.out.println("6. Pagos de residentes: ");
+		System.out.println("7. Salir: ");
  try {
 		int opcion = teclado.nextInt();
 		switch (opcion) {
@@ -185,6 +188,12 @@ public class Aparcamiento {
 			System.out.println("Digite la placa: ");
 			matricula = teclado.next();
 			apar.generaInformePagosResidentes(matricula);
+			break;
+			
+		case 7:
+			salir = true;			
+			break;
+			
 			default:
 			System.out.println("opción no valida");
 
@@ -196,6 +205,7 @@ public class Aparcamiento {
 	 System.out.println("error" + error.getMessage());
  }
 		
+	}
 	}
 
 	public static void main(String[] args) {

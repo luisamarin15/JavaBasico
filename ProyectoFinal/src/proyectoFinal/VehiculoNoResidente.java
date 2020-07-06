@@ -8,9 +8,13 @@ import java.util.*;
 public class VehiculoNoResidente extends Vehiculo {
 	private static final double precioMinuto = 50;
 	private double pagoEstancia = 0.0;
+	
+	
 
 	public VehiculoNoResidente(String matricula) {
 		super(matricula);
+		
+		
 	}
 
 	@Override
@@ -21,12 +25,7 @@ public class VehiculoNoResidente extends Vehiculo {
 	}
 
 
-
-	private double difEnMinutos(Calendar horaEntrada, Calendar instance) {
-		 
-		
-		return 0;
-	}
+	
 
 	public double pagoEstancia() {
 		return pagoEstancia;

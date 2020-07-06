@@ -30,4 +30,10 @@ public abstract class Vehiculo {
 	public void comienzaEstancia() {
 		this.horaEntrada = Calendar.getInstance();
 	}
+	
+	public  double difEnMinutos(Calendar horaEntrada, Calendar horaSalida) {
+		long milisegundos= horaEntrada.getTime().getTime() - horaSalida.getTime().getTime();
+		double minutos = milisegundos/60000;		
+		return minutos;
+	}
 }
