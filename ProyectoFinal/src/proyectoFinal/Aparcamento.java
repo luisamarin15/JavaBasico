@@ -6,7 +6,8 @@ import java.io.PrintWriter;
 import java.util.*;
 
 public class Aparcamento {
-
+	static Scanner teclado = new Scanner(System.in);
+	
 	public static class VehiculoYaRegistrado extends Exception {
 	}
 
@@ -16,15 +17,16 @@ public class Aparcamento {
 	public static class VehiculoNoAparcado extends Exception {
 	}
 
+	// Vehículos que se encuentran en un momento dado en el
+	// aparcamiento. Pueden ser tanto vehículos de residentes,
+	// como oficiales como de no residentes
+	private LinkedList<Vehiculo> aparcados = new LinkedList<Vehiculo>();
+
 	// Registro de vehículos oficiales
 	private LinkedList<VehiculoOficial> oficiales = new LinkedList<VehiculoOficial>();
 
 	// Registro de vehículos de residentes
 	private LinkedList<VehiculoResidente> residentes = new LinkedList<VehiculoResidente>();
-	// Vehículos que se encuentran en un momento dado en el
-	// aparcamiento. Pueden ser tanto vehículos de residentes,
-	// como oficiales como de no residentes
-	private LinkedList<Vehiculo> aparcados = new LinkedList<Vehiculo>();
 
 	/**
 	 * Busca el coche con la matricula indicada en la lista de vehículos oficiales
@@ -33,17 +35,17 @@ public class Aparcamento {
 	 * @return el vehículo o null en caso de que no lo encuentre
 	 */
 	private VehiculoOficial buscaOficial(String matricula) {
-		for (VehiculoOficial v : oficiales) {
-			if (v.getMatricula().equals(matricula))
-				return v;
+		for (VehiculoOficial vehi : oficiales) {
+			if (vehi.getMatricula().equals(matricula))
+				return vehi;
 		}
 		return null;
 	}
 
 	private VehiculoResidente buscaResidente(String matricula) {
-		for (VehiculoResidente v : residentes) {
-			if (v.getMatricula().equals(matricula))
-				return v;
+		for (VehiculoResidente vehi : residentes) {
+			if (vehi.getMatricula().equals(matricula))
+				return vehi;
 		}
 		return null;
 	}
@@ -55,9 +57,9 @@ public class Aparcamento {
 	 * @return el vehículo o null en caso de que no lo encuentre
 	 */
 	private Vehiculo buscaAparcado(String matricula) {
-		for (Vehiculo v : aparcados) {
-			if (v.getMatricula().equals(matricula))
-				return v;
+		for (Vehiculo vehi : aparcados) {
+			if (vehi.getMatricula().equals(matricula))
+				return vehi;
 		}
 		return null;
 	}
@@ -69,11 +71,11 @@ public class Aparcamento {
 	 * @throws VehiculoYaRegistrado ya existe un coche con esa matricula en la lista
 	 */
 	public void registraOficial(String matricula) throws VehiculoYaRegistrado {
-		VehiculoOficial v = buscaOficial(matricula);
-		if (v != null)
+		VehiculoOficial vehi = buscaOficial(matricula);
+		if (vehi!= null)
 			throw new VehiculoYaRegistrado();
-		v = new VehiculoOficial(matricula);
-		oficiales.add(v);
+		vehi = new VehiculoOficial(matricula);
+		oficiales.add(vehi);
 	}
 
 	/**
@@ -99,28 +101,28 @@ public class Aparcamento {
 	 *                            aparcamiento
 	 */
 	public void entra(String matricula) throws VehiculoYaAparcado {
-		Vehiculo v = buscaAparcado(matricula);
-		if (v != null) {
+		Vehiculo vehi = buscaAparcado(matricula);
+		if (vehi != null) {
 // error: ya existe un coche dentro del aparcamiento
 // con esa matricula
 			throw new VehiculoYaAparcado();
 		}
 // vemos si es un vehículo de residente
-		v = buscaResidente(matricula);
-		if (v == null) {
+		vehi = buscaResidente(matricula);
+		if (vehi== null) {
 // no es un vehículo de residente, vemos si es oficial
-			v = buscaOficial(matricula);
-			if (v == null) {
+			vehi = buscaOficial(matricula);
+			if (vehi == null) {
 // tampoco es oficial, luego es de no residente.
 				// Crea un vehículo de no residente
-				v = new VehiculoNoResidente(matricula);
+				vehi = new VehiculoNoResidente(matricula);
 			}
 		}
 		// sea del tipo que sea, llamamos al método correspondiente
 		// a comenzar la estancia y le añadimos a la lista de
 		// vehículos aparcados
-		v.comienzaEstancia();
-		aparcados.add(v);
+		vehi.comienzaEstancia();
+		aparcados.add(vehi);
 	}
 
 	/**
@@ -133,15 +135,15 @@ public class Aparcamento {
 	 *                            aparcado
 	 */
 	public Vehiculo sale(String matricula) throws VehiculoNoAparcado {
-		Vehiculo v = buscaAparcado(matricula);
-		if (v == null) {
+		Vehiculo vehi = buscaAparcado(matricula);
+		if (vehi == null) {
 			// error: el vehículo debería estar en el aparcamiento!!
 			throw new VehiculoNoAparcado();
 		}
 		// finaliza la estancia y se elimina de la lista de aparcados
-		v.finEstancia();
-		aparcados.remove(v);
-		return v;
+		vehi.finEstancia();
+		aparcados.remove(vehi);
+		return vehi;
 	}
 
 	/**
@@ -175,9 +177,51 @@ public class Aparcamento {
 		}
 	}
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	
+	public static void menuPrincipal() {
+		
+		System.out.println("Bienvenido al menu principal");
+		System.out.println("Seleccione la opcion: ");
+		System.out.println("1. Registrar entrada: ");
+		System.out.println("2. Registrar salida: ");
+		System.out.println("3. Da de alta vehículo de oficial: ");
+		System.out.println("4. Da de alta vehículo de residente: ");
+		System.out.println("5. Comienza mes: ");
+		System.out.println("6. Pagos de residentes: ");
+		
+		int opcion = teclado.nextInt();
+		switch (opcion) {
+		case 1:
+		
+			
+			break;
+		case 2:
+			
+			break;
+			
+		case 3:
+		
+			break;
+			
+		case 4:
+			
+			
+			break;
+			
+		case 5:
+			
+			break;
+			
+			
+			default:
+				System.out.println("opción no valida");
 
+		}
+	}
+	public static void main(String[] args) {
+		Aparcamento a= new Aparcamento(); 		
+	
+		
 	}
 
 }

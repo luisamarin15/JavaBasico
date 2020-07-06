@@ -9,10 +9,10 @@ import java.util.Calendar;
 public class VehiculoResidente extends Vehiculo {
 	private static final double precioMinuto = 25;
 // tiempo de estancia acumulado en el mes en curso
-	private int tiempoAcumulado = 0; 	
+	private int tiempoAcumulado = 0;
 
-	public VehiculoResidente(String matrícula) {
-		super(matrícula);
+	public VehiculoResidente(String matricula) {
+		super(matricula);
 	}
 
 	public int getTiempoAcumulado() {
@@ -27,13 +27,11 @@ public class VehiculoResidente extends Vehiculo {
 
 	@Override
 	public void finEstancia() {
-	
+
 // incrementa el tiempo acumulado en la duración de
 // la estancia que finaliza en este instante
-		tiempoAcumulado  += difEnMinutos(getHoraEntrada(), Calendar.getInstance());
+	//	tiempoAcumulado = tiempoAcumulado + (difEnMinutos(getHoraEntrada(), Calendar.getInstance()));
 	}
-
-
 
 	public double pagoMes() {
 		return tiempoAcumulado * precioMinuto;
