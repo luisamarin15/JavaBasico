@@ -111,7 +111,7 @@ public class Aparcamiento {
 		return vehi;
 	}
 
-	//Comienza el mes para los vehículos los vehículos de residentesy oficiales.
+	//Comienza el mes para los vehículos los vehículos de residentes.
 	public void comienzaMes() {
 		for (VehiculoResidente vehi : residentes)
 			vehi.comienzaMes();
@@ -189,6 +189,7 @@ public class Aparcamiento {
 			break;
 			
 		case 7:
+			System.out.println("Hasta Luego");
 			salir = true;			
 			break;
 			
