@@ -21,7 +21,7 @@ public class VehiculoOficial extends Vehiculo {
 
 	@Override
 	public void comienzaMes() {
-		estancias.clear(); // borra la lista de estancias
+		
 	}
 
 	@Override

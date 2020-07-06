@@ -8,7 +8,7 @@ import java.util.Calendar;
  */
 public class VehiculoResidente extends Vehiculo {
 	private static final double precioMinuto = 25;
-// tiempo de estancia acumulado en el mes en curso
+
 	private double tiempoAcumulado = 0;
 
 	public VehiculoResidente(String matricula) {
