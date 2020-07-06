@@ -120,19 +120,9 @@ public class Aparcamiento {
 	
 
 	public void generaInformePagosResidentes(String nomFich) throws IOException {
-		PrintWriter sal = null;
-
-		try {
-			sal = new PrintWriter(new FileWriter(nomFich));
-			sal.println("matricula Tiempo estacionado (min.)" + " Cantidad a pagar");
-			for (VehiculoResidente v : residentes) {
-				sal.printf("%-20s %7d %20.2f%n", v.getMatricula(), v.getTiempoAcumulado(), v.pagoMes());
-			}
-		} finally {
-			if (sal != null)
-				sal.close();
-		}
+		
 	}
+	//vehi.getTiempoAcumulado(),
 
 	public static void menuPrincipal() {
 		boolean salir = false;
@@ -183,7 +173,9 @@ public class Aparcamiento {
 			break;
 
 		case 6:
+			
 			System.out.println("Digite la placa: ");
+			matricula = teclado.next();
 			matricula = teclado.next();
 			apar.generaInformePagosResidentes(matricula);
 			break;

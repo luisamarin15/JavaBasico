@@ -28,9 +28,7 @@ public class VehiculoResidente extends Vehiculo {
 	@Override
 	public void finEstancia() {
 
-// incrementa el tiempo acumulado en la duración de
-// la estancia que finaliza en este instante
-	tiempoAcumulado = tiempoAcumulado + difEnMinutos(getHoraEntrada(), Calendar.getInstance());
+
 	}
 	
 	

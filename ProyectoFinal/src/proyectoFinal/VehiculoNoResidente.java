@@ -21,7 +21,7 @@ public class VehiculoNoResidente extends Vehiculo {
 	public void finEstancia() {
 // calcula la cantidad a pagar
 
-	pagoEstancia = difEnMinutos(getHoraEntrada(), Calendar.getInstance()) * precioMinuto;
+
 	}
 
 
